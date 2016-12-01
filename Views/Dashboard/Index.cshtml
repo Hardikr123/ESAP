@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/themes/default/style.min.css" rel="stylesheet" />
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12" ng-controller="dragdrop">
+            <button type="button" id="btnimport" class="btn btn-primary">Import</button>
+            <button type="button" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-primary">Print</button>
+            <br />
+            <div ui-tree class="tree-node tree-node-content" style="width: 50%">
+                <ol ui-tree-nodes="" ng-model="list">
+                    <li ng-repeat="item in list" ui-tree-node>
+                        <div>
+                            {{item.title}}
+                        </div>
+                        <ol ui-tree-nodes="" ng-model="item.items">
+                            <span ng-repeat="subItem in item.items" ui-tree-node>
+                                
+                                    <div ui-tree-handle>
+                                        {{subItem.title}}
+                                  
+                                    </div>
+                                     
+                                
+                                <a class="pull-right" style="margin-right: 8px; " ng-click="remove(this)"><span
+                                    class="glyphicon glyphicon-remove"></span></a>
+                            </span>
+
+
+                        </ol>
+
+                    </li>
+                </ol>
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                details
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnimport").click(function () {
+                $.get("/Dashboard/ImportData", function (data, status) {
+                    alert(data);
+                });
+            });
+        });
+    </script>
