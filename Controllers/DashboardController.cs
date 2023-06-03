@@ -12,7 +12,6 @@ namespace ESAP.Controllers
         public string Name { get; set; }
         public string Email { get; set; }
         public string businessType { get; set; }
-
     }
     public class DashboardController : Controller
     {
